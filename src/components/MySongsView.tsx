@@ -105,7 +105,7 @@ export const MySongsView: React.FC<MySongsViewProps> = ({
   });
 
   return (
-    <div className="pt-24 pb-32 bg-[#0F172A] text-slate-200 min-h-screen">
+    <div className="melody-workspace pt-24 pb-32 min-h-screen bg-[#111014] text-[#f7f1e7]">
       
       {/* Toast Notification */}
       {toastMessage && (
@@ -335,16 +335,20 @@ export const MySongsView: React.FC<MySongsViewProps> = ({
             <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mx-auto text-slate-400">
               <Music2 className="w-8 h-8" />
             </div>
-            <h3 className="text-xl font-bold text-white">No se encontraron canciones</h3>
+            <h3 className="text-xl font-bold text-white">
+              {songs.length === 0 ? 'Aún no has encargado ninguna canción' : 'No se encontraron canciones'}
+            </h3>
             <p className="text-xs text-slate-400">
-              Prueba con otro término de búsqueda o encarga una nueva canción a nuestro estudio.
+              {songs.length === 0
+                ? 'Cuando hagas tu primer encargo, aquí podrás escucharlo, descargarlo y pedir revisiones.'
+                : 'Prueba con otro término de búsqueda o encarga una nueva canción a nuestro estudio.'}
             </p>
             <button
               onClick={onStartCreation}
               className="px-6 py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/30 transition-all inline-flex items-center gap-2 cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Encargar mi primera canción</span>
+              <span>{songs.length === 0 ? 'Encargar mi primera canción' : 'Encargar otra canción'}</span>
             </button>
           </div>
         )}

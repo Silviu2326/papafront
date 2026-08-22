@@ -23,8 +23,7 @@ import { MobileNav } from './components/MobileNav';
 import { AdminLogin } from './components/AdminLogin';
 import { CheckCircle2 } from 'lucide-react';
 import { HeroSection } from './components/HeroSection';
-import { ThreeSteps } from './components/ThreeSteps';
-import { GenreShowcase } from './components/GenreShowcase';
+import { StudioSignature } from './components/StudioSignature';
 import { SongPlayer } from './components/SongPlayer';
 import { RevisionModal } from './components/RevisionModal';
 import { ProfileModal } from './components/ProfileModal';
@@ -84,7 +83,6 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [volume, setVolume] = useState<number>(0.8);
-  const [playingGenreId, setPlayingGenreId] = useState<string | null>(null);
 
   // Modals state
   const [revisionSong, setRevisionSong] = useState<Song | null>(null);
@@ -466,14 +464,11 @@ export default function App() {
         return;
       }
       setCurrentPlayingSong(song);
-      setPlayingGenreId(null);
       audioEngine.play(song.audioKey || 'pop', song.bpm || 120);
       return;
     }
 
     setCurrentPlayingSong(song);
-    setPlayingGenreId(null);
-
     (async () => {
       try {
         const url = await resolveSongAudioUrl(song);
@@ -520,17 +515,6 @@ export default function App() {
   const handleVolumeChange = (newVolume: number) => {
     setVolume(newVolume);
     audioEngine.setVolume(newVolume);
-  };
-
-  // Genre showcase live preview
-  const handleToggleGenrePreview = (style: any) => {
-    if (playingGenreId === style.id && isPlaying) {
-      audioEngine.stop();
-      setPlayingGenreId(null);
-    } else {
-      setPlayingGenreId(style.id);
-      audioEngine.play(style.id, style.bpmNumber || 110);
-    }
   };
 
   // Creation workflow actions
@@ -596,6 +580,10 @@ export default function App() {
     }
   };
 
+  // La biblioteca del cliente nunca debe mezclar las canciones de muestra
+  // de la portada con sus encargos reales.
+  const librarySongs = session ? songs.filter((song) => !SAMPLE_SONG_IDS.has(song.id)) : [];
+
   const handleNavigate = (tab: NavigationTab) => {
     setCurrentTab(tab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -653,15 +641,8 @@ export default function App() {
               }}
             />
 
-            {/* 3 Simple Steps */}
-            <ThreeSteps onStartCreation={() => handleStartCreation('pop')} />
-
-            {/* Genre Showcase Grid */}
-            <GenreShowcase
-              onSelectGenre={(genreId) => handleStartCreation(genreId)}
-              playingGenreId={playingGenreId}
-              onToggleGenrePreview={handleToggleGenrePreview}
-            />
+            {/* Signature visual del estudio */}
+            <StudioSignature />
           </div>
         )}
 
@@ -693,7 +674,7 @@ export default function App() {
 
         {currentTab === 'mis-canciones' && (
           <MySongsView
-            songs={songs}
+            songs={librarySongs}
             currentPlayingSong={currentPlayingSong}
             isPlaying={isPlaying}
             onPlaySong={handlePlaySong}
@@ -760,7 +741,6 @@ export default function App() {
                 // Pasa a ser lo que suena, en lugar de la muestra
                 if (mp3Url) {
                   setCurrentPlayingSong(songWithMp3);
-                  setPlayingGenreId(null);
                   audioEngine.playFile(mp3Url);
                 } else {
                   setAppToast('El MP3 se guardó, pero no se pudo cargar para reproducir');
@@ -789,7 +769,7 @@ export default function App() {
       </Suspense>
 
       {/* Persistent Audio Player Bar: the home hero has its own featured player. */}
-      {currentTab !== 'inicio' && (
+      {currentTab !== 'inicio' && (currentTab !== 'mis-canciones' || librarySongs.length > 0) && (
         <SongPlayer
           currentSong={currentPlayingSong}
           isPlaying={isPlaying}

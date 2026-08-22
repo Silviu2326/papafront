@@ -302,28 +302,29 @@ export const SongPlayer: React.FC<SongPlayerProps> = ({
 
       {/* Lyrics & Track Info Modal */}
       {showLyricsModal && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-xl flex items-center justify-center p-4">
-          <div className="relative w-full max-w-2xl bg-slate-900 border border-slate-700 rounded-3xl p-6 lg:p-8 shadow-2xl shadow-indigo-950/50 max-h-[90vh] flex flex-col overflow-hidden">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#111014]/85 p-4 backdrop-blur-xl">
+          <div className="relative flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-[28px] border border-[#69566f] bg-[#19161d] p-6 shadow-[0_25px_90px_rgba(0,0,0,0.65)] lg:p-8">
             
-            <div className="flex justify-between items-start border-b border-slate-800 pb-4 mb-6">
-              <div className="flex items-center gap-4">
+            <div className="mb-6 flex items-start justify-between border-b border-[#403443] pb-5">
+              <div className="flex min-w-0 items-center gap-4">
                 <img
                   src={currentSong.coverUrl}
                   alt={currentSong.title}
-                  className="w-16 h-16 rounded-2xl object-cover border border-slate-700 shadow-md"
+                  className="h-16 w-16 rounded-[18px] border border-[#51434a] object-cover shadow-md"
                 />
-                <div>
-                  <h3 className="font-extrabold text-2xl text-white">{currentSong.title}</h3>
-                  <p className="text-sm text-indigo-400 font-semibold flex items-center gap-2 mt-0.5">
+                <div className="min-w-0">
+                  <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.22em] text-[#ff8975]">Letra de tu canción</p>
+                  <h3 className="truncate font-display text-3xl text-[#f7f1e7]">{currentSong.title}</h3>
+                  <p className="mt-1 flex items-center gap-2 text-sm font-semibold text-[#a99bff]">
                     <span>{currentSong.genre}</span>
                     <span>•</span>
-                    <span className="text-slate-400">{currentSong.voiceName}</span>
+                    <span className="truncate text-[#918a97]">{currentSong.voiceName}</span>
                   </p>
                 </div>
               </div>
               <button
                 onClick={() => setShowLyricsModal(false)}
-                className="p-2 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                className="ml-3 shrink-0 cursor-pointer rounded-full border border-[#4b4147] bg-[#211c23] p-2 text-[#918a97] transition-colors hover:border-[#ff715b] hover:text-[#f7f1e7]"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -331,15 +332,15 @@ export const SongPlayer: React.FC<SongPlayerProps> = ({
 
             {/* Dedication Banner */}
             {currentSong.dedication && (
-              <div className="bg-slate-800/80 rounded-2xl p-4 mb-6 border border-slate-700/80 flex flex-wrap items-center justify-between gap-3">
+              <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-[18px] border border-[#51434a] bg-[#211c23] p-4">
                 <div>
-                  <span className="text-xs uppercase font-bold tracking-wider text-slate-400 block">Dedicatoria Especial</span>
-                  <p className="text-sm font-semibold text-white mt-0.5">
-                    Para: <span className="text-indigo-400">{currentSong.dedication.to}</span> {currentSong.dedication.from ? `(De: ${currentSong.dedication.from})` : ''}
+                  <span className="block text-xs font-bold uppercase tracking-[0.16em] text-[#918a97]">Dedicatoria especial</span>
+                  <p className="mt-1 text-sm font-semibold text-[#f7f1e7]">
+                    Para: <span className="text-[#a99bff]">{currentSong.dedication.to}</span> {currentSong.dedication.from ? `(De: ${currentSong.dedication.from})` : ''}
                   </p>
                 </div>
                 {currentSong.dedication.occasion && (
-                  <span className="px-3 py-1 rounded-full bg-indigo-500/15 border border-indigo-500/30 text-indigo-300 text-xs font-bold">
+                  <span className="rounded-full border border-[#a99bff]/30 bg-[#a99bff]/10 px-3 py-1 text-xs font-bold text-[#c8beff]">
                     {currentSong.dedication.occasion}
                   </span>
                 )}
@@ -347,28 +348,28 @@ export const SongPlayer: React.FC<SongPlayerProps> = ({
             )}
 
             {/* Lyrics Content */}
-            <div className="flex-1 overflow-y-auto pr-2 space-y-4 text-sm leading-relaxed text-slate-200 bg-slate-950/60 p-6 rounded-2xl border border-slate-800">
-              <pre className="font-sans whitespace-pre-wrap text-base leading-loose">
+            <div className="flex-1 space-y-4 overflow-y-auto rounded-[20px] border border-[#403443] bg-[#111014]/80 p-6 text-sm leading-relaxed text-[#ddd5d6]">
+              <pre className="whitespace-pre-wrap font-sans text-base leading-[2.1] text-[#ddd5d6]">
                 {currentSong.lyrics || 'Cargando letra personalizada...'}
               </pre>
             </div>
 
             {/* Actions in Modal */}
-            <div className="flex items-center justify-between pt-6 border-t border-slate-800 mt-6">
+            <div className="mt-6 flex items-center justify-between gap-3 border-t border-[#403443] pt-6">
               <button
                 onClick={onTogglePlay}
-                className="flex items-center gap-2 px-6 py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 transition-all cursor-pointer"
+                className="flex cursor-pointer items-center gap-2 rounded-full bg-[#ff715b] px-6 py-3 text-sm font-bold text-[#211517] shadow-[0_12px_30px_rgba(255,113,91,0.22)] transition-all hover:bg-[#ff8975]"
               >
                 {isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current" />}
-                <span>{isPlaying ? 'Pausar Canción' : 'Escuchar Ahora'}</span>
+                <span>{isPlaying ? 'Pausar canción' : 'Escuchar ahora'}</span>
               </button>
 
               <button
                 onClick={handleDownload}
                 disabled={isDownloading}
-                className="flex items-center gap-2 px-6 py-3 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm border border-slate-700 transition-all cursor-pointer"
+                className="flex cursor-pointer items-center gap-2 rounded-full border border-[#4b4147] bg-[#211c23] px-6 py-3 text-sm font-bold text-[#f7f1e7] transition-all hover:border-[#a99bff] hover:text-[#d8d1ff]"
               >
-                <Download className="w-4 h-4 text-indigo-400" />
+                <Download className="h-4 w-4 text-[#a99bff]" />
                 <span>Descargar WAV</span>
               </button>
             </div>

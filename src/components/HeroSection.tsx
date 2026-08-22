@@ -2,6 +2,7 @@ import React from 'react';
 import { Heart, MoreHorizontal, Pause, Play, Sparkles, Volume2 } from 'lucide-react';
 import { Song } from '../types';
 import featuredCover from '../assets/melody-featured-cover.png';
+import bannerBackground from '../../assets/melody-banner-background.mp4';
 
 interface HeroSectionProps {
   onStartCreation: () => void;
@@ -20,6 +21,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
   return (
     <section className="relative overflow-hidden pb-16 pt-[126px] lg:pb-24 lg:pt-[156px]">
+      <video
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-45"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster={featuredCover}
+        aria-hidden="true"
+      >
+        <source src={bannerBackground} type="video/mp4" />
+      </video>
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#111014]/95 via-[#111014]/80 to-[#111014]/45" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#111014]/45 via-transparent to-[#111014]/80" />
       <div className="melody-grain absolute inset-0" />
       <div className="pointer-events-none absolute -left-40 top-24 h-[460px] w-[460px] rounded-full bg-[#ff715b]/[0.07] blur-[130px]" />
       <div className="pointer-events-none absolute right-[-150px] top-10 h-[520px] w-[520px] rounded-full bg-[#a99bff]/[0.08] blur-[150px]" />

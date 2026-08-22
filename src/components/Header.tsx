@@ -17,10 +17,6 @@ export const Header: React.FC<HeaderProps> = ({
   onStartCreation,
   userEmail = '',
 }) => {
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
   return (
     <header className="fixed top-0 z-50 w-full border-b border-[#3a3035] bg-[#111014]/90 backdrop-blur-xl">
       <div className="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between px-5 lg:px-12">
@@ -45,18 +41,6 @@ export const Header: React.FC<HeaderProps> = ({
 
         <nav className="hidden items-center gap-1 rounded-full border border-[#3a3035] bg-[#19161d]/70 p-1 md:flex" aria-label="Navegación principal">
           <button onClick={() => onSelectTab('inicio')} className={`rounded-full px-3 py-2 text-xs font-semibold transition ${currentTab === 'inicio' ? 'bg-[#ff715b] text-[#211517]' : 'text-[#b8afb7] hover:text-[#f7f1e7]'}`}>Inicio</button>
-          <button
-            onClick={() => scrollTo('how-it-works')}
-            className="rounded-full px-3 py-2 text-xs font-semibold text-[#b8afb7] transition-colors hover:text-[#f7f1e7]"
-          >
-            Cómo funciona
-          </button>
-          <button
-            onClick={() => scrollTo('explore-styles')}
-            className="rounded-full px-3 py-2 text-xs font-semibold text-[#b8afb7] transition-colors hover:text-[#f7f1e7]"
-          >
-            Explora estilos
-          </button>
           <button onClick={() => onSelectTab('mis-canciones')} className={`rounded-full px-3 py-2 text-xs font-semibold transition ${currentTab === 'mis-canciones' ? 'bg-[#ff715b] text-[#211517]' : 'text-[#b8afb7] hover:text-[#f7f1e7]'}`}>Mis canciones</button>
           <button onClick={() => onSelectTab('pedidos')} className={`rounded-full px-3 py-2 text-xs font-semibold transition ${currentTab === 'pedidos' ? 'bg-[#ff715b] text-[#211517]' : 'text-[#b8afb7] hover:text-[#f7f1e7]'}`}>Pedidos</button>
           <button onClick={() => onSelectTab('precios')} className={`rounded-full px-3 py-2 text-xs font-semibold transition ${currentTab === 'precios' ? 'bg-[#ff715b] text-[#211517]' : 'text-[#b8afb7] hover:text-[#f7f1e7]'}`}>Precios</button>

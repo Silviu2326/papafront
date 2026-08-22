@@ -257,7 +257,7 @@ export const OrdersAdmin: React.FC<OrdersAdminProps> = ({
   };
 
   return (
-    <div className="pt-24 pb-32 bg-[#0F172A] text-slate-200 min-h-screen">
+    <div className="melody-workspace pt-24 pb-32 min-h-screen bg-[#111014] text-[#f7f1e7]">
       <div className="max-w-[1360px] mx-auto px-5 lg:px-12">
         <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div>

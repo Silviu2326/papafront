@@ -299,6 +299,23 @@ export async function signInWithEmail(email: string, password: string): Promise<
   return data.session;
 }
 
+/** Registro de usuarios finales con email + contraseña. */
+export async function signUpWithEmail(email: string, password: string, displayName?: string) {
+  if (!isSupabaseConfigured()) {
+    throw new Error('Supabase credentials missing (VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY)');
+  }
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: displayName ? { full_name: displayName } : undefined,
+      emailRedirectTo: window.location.origin,
+    },
+  });
+  if (error) throw error;
+  return data;
+}
+
 /** Cierre de sesión (supabase.auth.signOut). */
 export async function signOut(): Promise<void> {
   const { error } = await supabase.auth.signOut();
@@ -309,6 +326,8 @@ export async function signOut(): Promise<void> {
 export function describeAuthError(err: unknown): string {
   const message = err instanceof Error ? err.message : 'No se pudo iniciar sesión';
   if (/invalid login credentials/i.test(message)) return 'Email o contraseña incorrectos.';
+  if (/user already registered|already been registered/i.test(message)) return 'Ya existe una cuenta con ese correo.';
+  if (/password should be at least|password.*characters/i.test(message)) return 'La contraseña debe tener al menos 6 caracteres.';
   if (/email not confirmed/i.test(message)) return 'Confirma tu email antes de iniciar sesión.';
   if (/rate limit|too many/i.test(message)) return 'Demasiados intentos. Espera unos segundos.';
   if (/credentials missing/i.test(message)) {

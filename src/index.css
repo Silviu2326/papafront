@@ -110,6 +110,75 @@
   border-color: rgba(132, 112, 117, 0.28);
 }
 
+/* Shared visual language for the product views. The business logic stays in
+   each screen, while surfaces, controls and statuses inherit the landing-page
+   palette instead of the former blue admin theme. */
+.melody-workspace {
+  background-color: #111014 !important;
+  background-image:
+    radial-gradient(circle at 84% 0%, rgba(169, 155, 255, 0.08), transparent 32rem),
+    radial-gradient(circle at 8% 18%, rgba(255, 113, 91, 0.06), transparent 28rem);
+}
+
+.melody-workspace h1,
+.melody-workspace h2,
+.melody-workspace h3 {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+.melody-workspace .bg-slate-800 { background-color: #19161d !important; }
+.melody-workspace .bg-slate-800\/70 { background-color: rgba(25, 22, 29, 0.72) !important; }
+.melody-workspace .bg-slate-800\/80 { background-color: rgba(25, 22, 29, 0.82) !important; }
+.melody-workspace .bg-slate-800\/50 { background-color: rgba(25, 22, 29, 0.5) !important; }
+.melody-workspace .bg-slate-900 { background-color: #111014 !important; }
+.melody-workspace .bg-slate-900\/30 { background-color: rgba(17, 16, 20, 0.3) !important; }
+.melody-workspace .bg-slate-900\/60 { background-color: rgba(17, 16, 20, 0.6) !important; }
+.melody-workspace .bg-slate-900\/70 { background-color: rgba(17, 16, 20, 0.7) !important; }
+.melody-workspace .bg-slate-900\/80 { background-color: rgba(17, 16, 20, 0.8) !important; }
+.melody-workspace .bg-slate-950\/70 { background-color: rgba(10, 9, 12, 0.7) !important; }
+.melody-workspace .bg-slate-700 { background-color: #352c34 !important; }
+
+.melody-workspace .border-slate-700 { border-color: #4b4147 !important; }
+.melody-workspace .border-slate-700\/50 { border-color: rgba(75, 65, 71, 0.5) !important; }
+.melody-workspace .border-slate-700\/60 { border-color: rgba(75, 65, 71, 0.6) !important; }
+.melody-workspace .border-slate-700\/80 { border-color: rgba(75, 65, 71, 0.8) !important; }
+
+.melody-workspace .text-white { color: #f7f1e7 !important; }
+.melody-workspace .text-slate-200 { color: #ddd5d6 !important; }
+.melody-workspace .text-slate-300 { color: #b8afb7 !important; }
+.melody-workspace .text-slate-400 { color: #918a97 !important; }
+.melody-workspace .text-slate-500 { color: #746b75 !important; }
+.melody-workspace .text-slate-600 { color: #5d555f !important; }
+
+.melody-workspace .bg-indigo-600 { background-color: #ff715b !important; color: #211517 !important; }
+.melody-workspace .bg-indigo-500\/10 { background-color: rgba(169, 155, 255, 0.1) !important; }
+.melody-workspace .border-indigo-500\/30 { border-color: rgba(169, 155, 255, 0.3) !important; }
+.melody-workspace .border-indigo-500 { border-color: #a99bff !important; }
+.melody-workspace .text-indigo-400 { color: #a99bff !important; }
+.melody-workspace .text-indigo-300 { color: #c8beff !important; }
+.melody-workspace .text-indigo-200 { color: #d8d1ff !important; }
+.melody-workspace .shadow-indigo-600\/30 { --tw-shadow-color: rgba(255, 113, 91, 0.24) !important; }
+.melody-workspace .shadow-indigo-950\/60 { --tw-shadow-color: rgba(20, 13, 25, 0.6) !important; }
+.melody-workspace .hover\:bg-indigo-500:hover { background-color: #ff8975 !important; }
+.melody-workspace .hover\:bg-indigo-600:hover { background-color: #ff8975 !important; }
+.melody-workspace .hover\:bg-slate-600:hover { background-color: #4a3b44 !important; }
+.melody-workspace .hover\:bg-slate-700:hover { background-color: #4a3b44 !important; }
+.melody-workspace .hover\:text-indigo-400:hover { color: #d8d1ff !important; }
+.melody-workspace .hover\:border-indigo-500\/80:hover { border-color: rgba(255, 137, 117, 0.8) !important; }
+
+.melody-workspace input,
+.melody-workspace select,
+.melody-workspace textarea {
+  color-scheme: dark;
+}
+
+.melody-workspace input:focus,
+.melody-workspace select:focus,
+.melody-workspace textarea:focus {
+  border-color: #a99bff !important;
+  box-shadow: 0 0 0 3px rgba(169, 155, 255, 0.12);
+}
+
 @keyframes floatTape {
   0%, 100% { transform: translateY(0) rotate(-2deg); }
   50% { transform: translateY(-8px) rotate(2deg); }

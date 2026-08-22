@@ -35,7 +35,7 @@ export const PricingView: React.FC<PricingViewProps> = ({
   ];
 
   return (
-    <div className="pt-24 pb-32 bg-[#0F172A] text-slate-200">
+    <div className="melody-workspace pt-24 pb-32 min-h-screen bg-[#111014] text-[#f7f1e7]">
       
       {/* Header */}
       <div className="max-w-[1360px] mx-auto px-5 lg:px-12 text-center mb-16 space-y-4">
