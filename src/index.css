@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color-scheme: dark;
+  }
+  
+  body {
+    background-color: #111014;
+    color: #F7F1E7;
+    overflow-x: hidden;
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #111014;
+}
+::-webkit-scrollbar-thumb {
+  background: #4b4147;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF715B;
+}
+
+@keyframes pulseWave {
+  0% {
+    transform: scaleY(0.4);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scaleY(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0.5);
+    opacity: 0.7;
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(0.5deg);
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-pulse-wave {
+  animation: pulseWave 1.4s ease-in-out infinite alternate;
+}
+
+.animate-float {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+.glass-panel {
+  background: rgba(25, 22, 29, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(132, 112, 117, 0.36);
+}
+
+.glass-panel-elevated {
+  background: rgba(25, 22, 29, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 113, 91, 0.32);
+}
+
+.font-display {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+.melody-grain {
+  background-image: radial-gradient(rgba(247, 241, 231, 0.06) 0.6px, transparent 0.7px);
+  background-size: 5px 5px;
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.section-rule {
+  border-color: rgba(132, 112, 117, 0.28);
+}
+
+@keyframes floatTape {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+.animate-float-tape { animation: floatTape 7s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
