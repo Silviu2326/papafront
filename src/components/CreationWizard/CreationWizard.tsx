@@ -260,7 +260,7 @@ export const CreationWizard: React.FC<CreationWizardProps> = ({
   ];
 
   return (
-    <div className="min-h-screen pt-20 pb-32 bg-[#0F172A] text-slate-200">
+    <div className="melody-workspace min-h-screen pt-20 pb-32 bg-[#111014] text-[#f7f1e7]">
       
       {/* Top Header Sticky Step Bar matching Vibrant Palette Design */}
       <div className="sticky top-20 z-30 bg-[#0F172A]/90 backdrop-blur-xl border-b border-slate-800 shadow-md">

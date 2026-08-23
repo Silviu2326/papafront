@@ -114,10 +114,62 @@
    each screen, while surfaces, controls and statuses inherit the landing-page
    palette instead of the former blue admin theme. */
 .melody-workspace {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background-color: #111014 !important;
   background-image:
     radial-gradient(circle at 84% 0%, rgba(169, 155, 255, 0.08), transparent 32rem),
     radial-gradient(circle at 8% 18%, rgba(255, 113, 91, 0.06), transparent 28rem);
+}
+
+/* Artist-studio atmosphere shared by every non-home view. The artwork stays
+   behind the functional UI so the workspace feels like one connected product,
+   without sacrificing contrast for forms, tables, or the creation flow. */
+.melody-workspace::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgba(17, 16, 20, 0.98) 0%, rgba(17, 16, 20, 0.82) 42%, rgba(17, 16, 20, 0.58) 100%),
+    url('./assets/studio-artist-backdrop.png');
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 0.28;
+  filter: saturate(0.82) contrast(1.06);
+}
+
+.melody-workspace::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 113, 91, 0.13), transparent 28rem),
+    radial-gradient(circle at 88% 18%, rgba(169, 155, 255, 0.12), transparent 34rem),
+    linear-gradient(180deg, rgba(17, 16, 20, 0.16), rgba(17, 16, 20, 0.72) 72%, #111014 100%);
+}
+
+.melody-workspace > * {
+  position: relative;
+  z-index: 1;
+}
+
+.melody-workspace .bg-slate-800,
+.melody-workspace .bg-slate-800\/70,
+.melody-workspace .bg-slate-800\/80 {
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.melody-workspace .rounded-2xl,
+.melody-workspace .rounded-3xl {
+  border-color: rgba(105, 86, 111, 0.62);
 }
 
 .melody-workspace h1,
@@ -188,4 +240,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
+
+@media (max-width: 767px) {
+  .melody-workspace::before {
+    background-position: 68% top;
+    background-attachment: scroll;
+    opacity: 0.2;
+  }
 }
